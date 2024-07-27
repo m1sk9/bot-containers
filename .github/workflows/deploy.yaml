@@ -24,22 +24,18 @@ jobs:
 
       - name: Deploy (Using Tailscale SSH)
         uses: appleboy/ssh-action@v1.0.3
-        env:
-          BABYRITE_DISCORD_API_TOKEN: ${{ secrets.BABYRITE_DISCORD_API_TOKEN }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # ref: https://github.com/approvers/containers2/blob/main/.github/workflows/deploy.yaml#L48-L64
-
             cd apps
             git pull origin main
             find . -name compose.yaml -type f -maxdepth 2 -print0 | while IFS= read -r -d '' compose_file; do
               workdir=$(dirname "$compose_file")
               cd "$workdir"
 
-              ./deploy.sh
+              docker compose up -d --build
 
               cd -
             done
