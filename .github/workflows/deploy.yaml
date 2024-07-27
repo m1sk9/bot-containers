@@ -1,0 +1,45 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/compose.yaml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Tailscale
+        uses: tailscale/github-action@v2
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_CLIENT_SECRET }}
+          tags: tag:bot-containers
+
+      - name: Deploy (Using Tailscale SSH)
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          BABYRITE_DISCORD_API_TOKEN: ${{ secrets.BABYRITE_DISCORD_API_TOKEN }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # ref: https://github.com/approvers/containers2/blob/main/.github/workflows/deploy.yaml#L48-L64
+
+            cd apps
+            git pull origin main
+            find . -name compose.yaml -type f -maxdepth 2 -print0 | while IFS= read -r -d '' compose_file; do
+              workdir=$(dirname "$compose_file")
+              cd "$workdir"
+
+              ./deploy.sh
+
+              cd -
+            done
