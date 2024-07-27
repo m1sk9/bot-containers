@@ -19,8 +19,7 @@ jobs:
         uses: tailscale/github-action@v2
         with:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-          oauth-secret: ${{ secrets.TS_OAUTH_CLIENT_SECRET }}
-          tags: tag:bot-containers
+          oauth-secret: ${{ secrets.TS_OAUTH_CLIENT_SECRET }} 
 
       - name: Deploy (Using Tailscale SSH)
         uses: appleboy/ssh-action@v1.0.3
@@ -28,6 +27,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd apps
             git pull origin main
