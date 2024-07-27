@@ -9,6 +9,4 @@ The repository that manages the Compose files for the Discord Bot running on my 
 - `dev-m1sk9-ubuntu-001` への接続には **直接SSHはせず**, Tailscale (Tailnet) 経由での接続を行います.
   - `dev-m1sk9-ubuntu-001` は自宅のネットワークに閉じ込めてあるため, 外部からの SSH はできません. 手持ちのデバイスからの SSH は事前に `@m1sk9` の Tailnet に端末を登録しておく必要があります.
 - GitHub Actions は公式の Actions である [`tailscale/github-action`](https://github.com/tailscale/github-action) を使用します. 直接 Tailscale の CLI を使用することはありません.
-- トークンなどの機密情報について:
-  - Discord API へのログインなどに使用するトークン等は GitHub の Secrets に保存し, GitHub Actions でのデプロイ時に環境変数として渡します.
-  - リポジトリでは扱いません.
+- トークンなどの機密情報は直接サーバーに保存しています. GitHub へ環境変数として配置するよりも前述の通り Tailscale で保護しているコンピューターに保存することでセキュリティを向上させています.
