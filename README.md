@@ -1,6 +1,5 @@
 # bot-containers
 
-[![Better Stack Badge](https://uptime.betterstack.com/status-badges/v3/monitor/1gwv0.svg)](https://uptime.m1sk9.dev)
 [![Deploy](https://github.com/m1sk9/bot-containers/actions/workflows/deploy.yaml/badge.svg)](https://github.com/m1sk9/bot-containers/actions/workflows/deploy.yaml)
 
 The repository that manages the Compose files for the Discord Bot running on my server.
