@@ -1,6 +1,6 @@
 services:
   app:
-    image: ghcr.io/m1sk9/babyrite:v0.9.0
+    image: ghcr.io/m1sk9/babyrite:v0.9.1
     env_file:
       - .env
     restart: always
