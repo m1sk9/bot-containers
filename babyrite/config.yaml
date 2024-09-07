@@ -11,5 +11,5 @@ citation_mention: true
 # Sets the format of babyrite log output.
 # * `compact`: output logs in normal format.
 # * `json`: Output logs in JSON format. This is the recommended setting if you are using Grafana Loki or similar.
-logger_format: 'json'
+logger_format: 'compact'
 
