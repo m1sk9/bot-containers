@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '**/compose.yaml'
   workflow_dispatch:
 
 jobs:
