@@ -6,9 +6,10 @@
 bypass_guilds: false
 
 # Whether to enable mentions in quoted messages.
-citation_mention: false
+citation_mention: true
 
 # Sets the format of babyrite log output.
 # * `compact`: output logs in normal format.
 # * `json`: Output logs in JSON format. This is the recommended setting if you are using Grafana Loki or similar.
-logger_format: 'compact'
+logger_format: 'json'
+
