@@ -1,6 +1,0 @@
-services:
-  app:
-    image: ghcr.io/m1sk9/mine:v0.2.0
-    env_file:
-      - .env
-    restart: always
