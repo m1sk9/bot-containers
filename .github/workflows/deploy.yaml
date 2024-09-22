@@ -22,6 +22,6 @@ jobs:
 
       - name: Deploy (Using Tailscale SSH)
         run: |
-          ssh -o "StrictHostKeyChecking no" bot-containers@dev-m1sk9-ubuntu-001 "
+          ssh -o "StrictHostKeyChecking no" bot-containers@dev-m1sk9-s1 "
             ./deploy.sh
           "
