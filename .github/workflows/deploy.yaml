@@ -22,6 +22,6 @@ jobs:
 
       - name: Deploy (Using Tailscale SSH)
         run: |
-          ssh -o "StrictHostKeyChecking no" bot-containers@dev-m1sk9-s1 "
+          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null bot-containers@dev-m1sk9-s1 "
             ./deploy.sh
           "
